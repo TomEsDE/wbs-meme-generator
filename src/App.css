@@ -5,6 +5,10 @@
 @media (prefers-reduced-motion: no-preference) {
 }
 
+main {
+  transform: scale(0.9);
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -14,4 +18,61 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.generate-div {
+  padding: 0rem;
+  padding-bottom: 1rem;
+}
+
+h1 {
+  font-size: 30pt;
+}
+
+.generate-input-div {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 24pt;
+  border-radius: 1rem;
+}
+
+.generate-input-div > input {
+  padding: 0.5rem;
+  font-size: 24pt;
+  border-radius: 1rem;
+  width: 30rem;
+}
+
+.generate-label-lower,
+.generate-label-upper {
+  padding-left: 1rem;
+  width: 15rem;
+}
+
+.meme-div {
+  position: relative;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 36pt;
+}
+
+.meme-div > img {
+  background: black;
+}
+
+.meme-text-upper {
+  position: absolute;
+  top: -20px;
+  /* top: 50%; */
+  left: 50%;
+  transform: translate(-50%, 50%);
+  text-shadow: 4px 0px 2px black;
+}
+
+.meme-text-lower {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  text-shadow: 4px 0px 2px black;
 }
