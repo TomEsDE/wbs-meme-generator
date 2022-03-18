@@ -14,6 +14,13 @@ export default function Meme({ memes, upper, lower }) {
     return;
   }, [memes]);
 
+  useEffect(() => {
+    // console.log('memes', memes);
+    setShowDL(false);
+
+    return;
+  }, [upper, lower]);
+
   function showRandomMeme() {
     setShowDL(false);
     if (memes) setMeme(memes[Math.floor(Math.random() * 100)]);
