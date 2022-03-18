@@ -86,7 +86,7 @@ h1 {
   padding-bottom: 2rem;
 }
 
-.meme-buttons > button {
+button {
   padding: 5px;
   border-radius: 0.5rem;
 }
@@ -97,4 +97,14 @@ h1 {
 }
 
 .meme-download-header {
+}
+
+.file-upload label {
+  cursor: pointer;
+}
+
+#upload-photo {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
 }

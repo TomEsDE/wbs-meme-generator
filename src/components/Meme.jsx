@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import domtoimage from 'dom-to-image';
+import FileUpload from './FileUpload';
 
 export default function Meme({ memes, upper, lower }) {
   const [meme, setMeme] = useState(null);
-  const [showDL, setShowDL] = useState(false);
+  const [showDL, setShowDL] = useState(true);
   const memeNode = useRef();
 
   useEffect(() => {
@@ -18,8 +19,18 @@ export default function Meme({ memes, upper, lower }) {
     if (memes) setMeme(memes[Math.floor(Math.random() * 100)]);
   }
 
-  function uploadMeme() {
-    console.log('uploadMeme');
+  function handleUpload(file) {
+    console.log('uploadMeme', file);
+    setShowDL(false);
+    if (file) setMeme((prev) => ({ url: file }));
+
+    // setShowDL(true);
+    // const img = new Image();
+    // img.src = file;
+    // img.width = 600;
+    // console.log('img', img);
+    // document.getElementById('img-dl').innerHTML = '';
+    // document.getElementById('img-dl').appendChild(img);
   }
 
   function exportMeme() {
@@ -31,8 +42,9 @@ export default function Meme({ memes, upper, lower }) {
       .toPng(memeNode.current)
       .then(function (dataUrl) {
         setShowDL(true);
-        var img = new Image();
+        const img = new Image();
         img.src = dataUrl;
+        document.getElementById('img-dl').innerHTML = '';
         document.getElementById('img-dl').appendChild(img);
       })
       .catch(function (error) {
@@ -44,7 +56,7 @@ export default function Meme({ memes, upper, lower }) {
     <>
       <div className="meme-buttons">
         <button onClick={showRandomMeme}>New</button>
-        <button onClick={uploadMeme}>Upload</button>
+        <FileUpload accept={'image/*'} handleUpload={handleUpload} />
         <button onClick={exportMeme}>Export</button>
       </div>
       <div ref={memeNode} className="meme-div">
@@ -53,8 +65,11 @@ export default function Meme({ memes, upper, lower }) {
         <div className="meme-text-upper">{upper}</div>
         <div className="meme-text-lower">{lower}</div>
       </div>
-      {showDL && (
-        <div className="meme-download">
+      {true && (
+        <div
+          className="meme-download"
+          style={{ display: `${showDL ? 'block' : 'none'}` }}
+        >
           <h2 className="meme-download-header">Download Meme</h2>
           <div id="img-dl"></div>
         </div>
