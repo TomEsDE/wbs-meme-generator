@@ -6,7 +6,7 @@
 }
 
 main {
-  transform: scale(0.9);
+  transform: scale(1);
 }
 
 .App-header {
@@ -32,14 +32,14 @@ h1 {
 .generate-input-div {
   display: flex;
   justify-content: center;
-  padding: 1rem;
-  font-size: 24pt;
+  padding: 0.5rem;
+  font-size: 20pt;
   border-radius: 1rem;
 }
 
 .generate-input-div > input {
   padding: 0.5rem;
-  font-size: 24pt;
+  font-size: 20pt;
   border-radius: 1rem;
   width: 30rem;
 }
@@ -54,15 +54,15 @@ h1 {
   position: relative;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 36pt;
+  padding-bottom: 1rem;
 }
 
 .meme-div > img {
   background: black;
 }
-
 .meme-text-upper {
   position: absolute;
-  top: -20px;
+  top: -2rem;
   /* top: 50%; */
   left: 50%;
   transform: translate(-50%, 50%);
@@ -71,8 +71,30 @@ h1 {
 
 .meme-text-lower {
   position: absolute;
-  bottom: 3rem;
+  bottom: 3.6rem;
   left: 50%;
   transform: translate(-50%, 50%);
   text-shadow: 4px 0px 2px black;
+}
+
+.meme-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  transform: scale(1.5);
+  padding-bottom: 2rem;
+}
+
+.meme-buttons > button {
+  padding: 5px;
+  border-radius: 0.5rem;
+}
+
+.meme-download {
+  padding-top: 1rem;
+  background: darkred;
+}
+
+.meme-download-header {
 }
