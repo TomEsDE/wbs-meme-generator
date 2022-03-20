@@ -52,43 +52,68 @@ h1 {
 
 .meme-div {
   position: relative;
+  /* font-family: 'Paytone One', sans-serif;
+  font-family: 'Anton', sans-serif; */
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 36pt;
+  font-size: 38pt;
+  /* font-stretch: narrower; */
+  font-weight: 500;
   padding-bottom: 1rem;
+}
+
+.adjust-div {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .meme-div > img {
   background: black;
 }
-.meme-text-upper {
+.meme-text-upper,
+.meme-text-lower {
   position: absolute;
-  top: -2rem;
-  /* top: 50%; */
+  /* width: 100%; */
+  white-space: nowrap;
   left: 50%;
-  transform: translate(-50%, 50%);
-  text-shadow: 4px 0px 2px black;
+  transform: translate(-50%, 0%);
+  text-shadow: -1px -1px 10px #000, 3px -1px 2px #000, -1px 1px 2px #000,
+    1px 1px 0 #000;
+}
+
+.meme-text-upper {
+  top: 0px;
 }
 
 .meme-text-lower {
-  position: absolute;
-  bottom: 3.6rem;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  text-shadow: 4px 0px 2px black;
+  bottom: 35px;
 }
 
 .meme-buttons {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
-  padding: 1rem;
-  transform: scale(1.5);
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
 button {
-  padding: 5px;
+  cursor: pointer;
+  border-width: 3px;
   border-radius: 0.5rem;
+  width: 10rem;
+  font-weight: bold;
+  padding: 0.4em;
+  font-size: 14pt;
+}
+
+button:hover {
+  background: coral;
+}
+
+.button-fs {
+  font-size: 11pt;
+  width: 4rem;
 }
 
 .meme-download {
@@ -97,6 +122,13 @@ button {
 }
 
 .meme-download-header {
+  margin-bottom: 0;
+}
+
+.meme-download-header-descr {
+  margin-bottom: 1rem;
+  font-weight: lighter;
+  font-size: smaller;
 }
 
 .file-upload label {

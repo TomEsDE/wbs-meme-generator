@@ -5,6 +5,9 @@ import FileUpload from './FileUpload';
 export default function Meme({ memes, upper, lower }) {
   const [meme, setMeme] = useState(null);
   const [showDL, setShowDL] = useState(true);
+  const [fontSizeUpper, setFontSizeUpper] = useState(30);
+  const [fontSizeLower, setFontSizeLower] = useState(30);
+  const [imageSize, setImageSize] = useState(500);
   const memeNode = useRef();
 
   useEffect(() => {
@@ -24,6 +27,18 @@ export default function Meme({ memes, upper, lower }) {
   function showRandomMeme() {
     setShowDL(false);
     if (memes) setMeme(memes[Math.floor(Math.random() * 100)]);
+  }
+
+  function inDecreaseFontsizeUpper(num) {
+    setFontSizeUpper((prev) => prev + num);
+  }
+
+  function inDecreaseFontsizeLower(num) {
+    setFontSizeLower((prev) => prev + num);
+  }
+
+  function inDecreaseImagesize(num) {
+    setImageSize((prev) => prev + num);
   }
 
   function handleUpload(file) {
@@ -53,6 +68,13 @@ export default function Meme({ memes, upper, lower }) {
         img.src = dataUrl;
         document.getElementById('img-dl').innerHTML = '';
         document.getElementById('img-dl').appendChild(img);
+
+        const el = document.createElement('a');
+        el.setAttribute('href', dataUrl);
+        el.setAttribute('download', 'meme');
+        document.getElementById('meme-div').appendChild(el);
+        el.click();
+        el.remove();
       })
       .catch(function (error) {
         console.error('oops, something went wrong!', error);
@@ -66,11 +88,65 @@ export default function Meme({ memes, upper, lower }) {
         <FileUpload accept={'image/*'} handleUpload={handleUpload} />
         <button onClick={exportMeme}>Export</button>
       </div>
-      <div ref={memeNode} className="meme-div">
-        {memes && <img width={500} src={meme?.url} alt="bild"></img>}
+      <div className="adjust-div">
+        <div className="meme-buttons">
+          <button
+            className="button-fs"
+            onClick={() => inDecreaseImagesize(-50)}
+          >
+            -
+          </button>
+          <div>Image Size</div>
+          <button className="button-fs" onClick={() => inDecreaseImagesize(50)}>
+            +
+          </button>
+        </div>
+        <div className="meme-buttons">
+          <button
+            className="button-fs"
+            onClick={() => inDecreaseFontsizeUpper(-2)}
+          >
+            -
+          </button>
+          <div>Font Size</div>
+          <button
+            className="button-fs"
+            onClick={() => inDecreaseFontsizeUpper(2)}
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <div ref={memeNode} className="meme-div" id="meme-div">
+        {memes && <img width={imageSize} src={meme?.url} alt="bild"></img>}
 
-        <div className="meme-text-upper">{upper}</div>
-        <div className="meme-text-lower">{lower}</div>
+        <div
+          style={{ fontSize: `${fontSizeUpper}pt` }}
+          className="meme-text-upper"
+        >
+          {upper}
+        </div>
+        <div
+          style={{ fontSize: `${fontSizeLower}pt` }}
+          className="meme-text-lower"
+        >
+          {lower}
+        </div>
+      </div>
+      <div className="meme-buttons">
+        <button
+          className="button-fs"
+          onClick={() => inDecreaseFontsizeLower(-2)}
+        >
+          -
+        </button>
+        <div>Font Size</div>
+        <button
+          className="button-fs"
+          onClick={() => inDecreaseFontsizeLower(2)}
+        >
+          +
+        </button>
       </div>
       {true && (
         <div
@@ -78,6 +154,9 @@ export default function Meme({ memes, upper, lower }) {
           style={{ display: `${showDL ? 'block' : 'none'}` }}
         >
           <h2 className="meme-download-header">Download Meme</h2>
+          <div className="meme-download-header-descr">
+            <em>left click on the picture and save picture...</em>
+          </div>
           <div id="img-dl"></div>
         </div>
       )}

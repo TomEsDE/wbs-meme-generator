@@ -10,6 +10,10 @@ function App() {
           <Route path={`/`} element={<MemeGenerator />} />
         </Routes>
       </main>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css2?family=Anton&family=Paytone+One&display=swap');
+      </style>
     </div>
   );
 }
